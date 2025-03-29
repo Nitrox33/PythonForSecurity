@@ -43,7 +43,7 @@ def indicator(message: str) -> None:
 
 def main():
     # Create the parser
-    argument_parser = argparse.ArgumentParser(description="Caesar cipher")
+    argument_parser = argparse.ArgumentParser(description="transposition cipher")
     argument_parser.add_argument("-i", type=str, help="Text to cipher")
     argument_parser.add_argument("-o", type=str, help="Output file name")
     argument_parser.add_argument("-K", type=int, help="Number of columns")
