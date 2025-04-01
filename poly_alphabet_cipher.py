@@ -1,4 +1,20 @@
 # This script is a simple implementation of the caesar cipher
+
+"""Poly-alphabet cipher
+This script is a simple implementation of the poly-alphabet cipher
+
+
+To use it, you need to provide a text to cipher and a key alphabets.
+You can also provide a file name to save the output.
+
+example:
+python poly_alphabet_cipher.py -i "hello" -K "defghijklmnopqrstuvwxyzabc" -o output.txt -e
+python poly_alphabet_cipher.py -i INPUT.txt -K "defghijklmnopqrstuvwxyzabc" "bcdefghijklmnopqrstuvwxyza" -o output.txt -e
+python poly_alphabet_cipher.py -i INPUT.txt -o output.txt -e # can create random keys
+
+python poly_alphabet_cipher.py -i INPUT.txt -K "defghijklmnopqrstuvwxyzabc" "bcdefghijklmnopqrstuvwxyza" -d
+"""
+
 # import
 import argparse
 import os
@@ -58,7 +74,8 @@ def keyGenerator() -> str:
     return ''.join(key)
 
 def main():
-    """command line interface for the mono-alphabet cipher
+    """
+    command line interface for the mono-alphabet cipher
     """
     # Create the parser
     argument_parser = argparse.ArgumentParser(description="Caesar cipher")
@@ -121,14 +138,12 @@ def main():
     else:
         text = args.i
     
-
     # Process the text
     if args.e:
         text = encode(text, args.K)
     
     if args.d:
         text = decode(text, args.K)
-    
     
     # Print or save the output
     if args.print_only:
