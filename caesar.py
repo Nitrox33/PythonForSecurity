@@ -89,7 +89,7 @@ def main():
         text = args.i
     
 
-    # Process the text
+    # Process the text edit
     if args.e:
         output = encode_caesar_cipher(text, args.K)
     
