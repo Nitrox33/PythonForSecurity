@@ -102,10 +102,6 @@ def main():
     else:
         with open(args.o, "w") as file:
             file.write(output)
-            
-
-
-
 
 
 if __name__ == "__main__":
