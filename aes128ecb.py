@@ -71,12 +71,12 @@ def decrypt_aes_ecb(data: bytes, key: bytes) -> bytes:
 def keyGenerator(n:int) -> bytes:
     output = bytes()
     while len(output) < n:
-        r = randint(33, 126)
-        if r in [34, 39, 47, 92]: continue
+        r = randint(33, 126) # 33 => ! , 126 => ~
+        if r in [34, 39, 47, 92]: continue # Skip " " ' / \
         else: output += bytes([r])
     return output
 
-def check_encoding(data: str) -> str:
+def check_encoding(data: str) -> bytes:
     if data[:2] == "0x" and set(data[2:]) <= set("0123456789abcdef"): # Hexadecimal input detected
         return bytes.fromhex(data[2:]) 
     elif data[:2] == "0b" and set(data[2:]) <= set("01"): # Binary input detected
@@ -113,9 +113,9 @@ def main():
     elif args.e and args.d:
         error("You must provide only one action: -e for encoding and -d for decoding")
     if args.e and not args.K: # Check if the key is provided for encryption, if not generate a random one
-        indicator("No key provided, creating a new one... (～￣▽￣)～")
-        args.K = keyGenerator(AES.block_size)
-        print(Style.BRIGHT + f" -> Key: {args.K.decode('ascii')}" + Style.RESET_ALL)
+        indicator("No key provided, creating a new one...")
+        args.K = keyGenerator(AES.block_size).decode('ascii')
+        print(Style.BRIGHT + f" -> Key: {args.K}" + Style.RESET_ALL)
     if args.d and not args.K: 
         error("You must provide a key with the -K option")
     

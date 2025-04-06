@@ -20,9 +20,10 @@ def import_dico(path):
     if not os.path.exists(path):
         print("The file does not exist")
         exit(1)
-    with open(path, "r") as file:
-        dico = json.load(file)
-    return dico
+    else:
+        with open(path, "r") as file:
+            dico = json.load(file)
+        return dico
 
 def decode_caesar_cipher(text:str, decalage:int) -> str:
     """decode a text using the caesar cipher
@@ -60,7 +61,7 @@ def brute_forcer(text, path_dico, verbose=False):
         if matching_words > best_matching_words:
             best_matching_words = matching_words
             best_shift = i
-        print(f"Shift: {i}, matching words: {matching_words}")
+        if verbose: print(f"Shift: {i}, matching words: {matching_words}")
         if verbose: print(output)
         
     
@@ -70,7 +71,6 @@ def brute_forcer(text, path_dico, verbose=False):
         return best_shift, "No matching words found"
     else:
         return best_shift, decode_caesar_cipher(text, best_shift)
-        
     
 if __name__ == "__main__":
     # Create the parser

@@ -89,7 +89,7 @@ def main():
         text = args.i
     
 
-    # Process the text edit
+    # Process the text
     if args.e:
         output = encode_caesar_cipher(text, args.K)
     
@@ -102,7 +102,7 @@ def main():
     else:
         with open(args.o, "w") as file:
             file.write(output)
-
+            
 
 if __name__ == "__main__":
     doctest.testmod()

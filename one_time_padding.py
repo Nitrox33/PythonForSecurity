@@ -3,10 +3,6 @@ import os
 
 def bytes_xor(a:bytes, b:bytes) -> bytes: return bytes(x^y for x,y in zip(a,b))
 
-def bytes_to_bitstring(b:bytes) -> str: return ''.join(format(byte, '08b') for byte in b)
-
-def bitstring_to_bytes(b:str) -> bytes: return bytes(int(b[i:i+8], 2) for i in range(0, len(b), 8))
-
 def one_time_pad_encrypt(plaintext:bytes, key:bytes) -> bytes:
     if len(plaintext) != len(key): raise ValueError("Plaintext and key must have the same length")
     return bytes_xor(plaintext, key)

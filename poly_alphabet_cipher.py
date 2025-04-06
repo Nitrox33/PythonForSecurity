@@ -1,5 +1,9 @@
 # This script is a simple implementation of the caesar cipher
-
+# import
+import argparse
+import os
+import random
+# define
 """Poly-alphabet cipher
 This script is a simple implementation of the poly-alphabet cipher
 
@@ -15,14 +19,10 @@ python poly_alphabet_cipher.py -i INPUT.txt -o output.txt -e # can create random
 python poly_alphabet_cipher.py -i INPUT.txt -K "defghijklmnopqrstuvwxyzabc" "bcdefghijklmnopqrstuvwxyza" -d
 """
 
-# import
-import argparse
-import os
-import random
-# define
+
 alphabet = 'abcdefghijklmnopqrstuvwxyz'
 
-def encode(text:str, key_alphanets:list) -> str:
+def encode(text:str, key_alphanets:list[str]) -> str:
     """Encode a text using the poly-alphabet cipher => for each letter in the text, we use a different key alphabet modulo the number of key alphabets
     Args:
         text (str): input text
@@ -45,7 +45,7 @@ def encode(text:str, key_alphanets:list) -> str:
         else: output += letter
     return output
 
-def decode(text:str, key_alphanets:list) -> str:
+def decode(text:str, key_alphanets:list[str]) -> str:
     """Decode a text using the poly-alphabet cipher => for each letter in the text, we use a different key alphabet modulo the number of key alphabets
     Args:
         text (str): input text
@@ -74,8 +74,7 @@ def keyGenerator() -> str:
     return ''.join(key)
 
 def main():
-    """
-    command line interface for the mono-alphabet cipher
+    """command line interface for the mono-alphabet cipher
     """
     # Create the parser
     argument_parser = argparse.ArgumentParser(description="Caesar cipher")
@@ -138,12 +137,14 @@ def main():
     else:
         text = args.i
     
+
     # Process the text
     if args.e:
         text = encode(text, args.K)
     
     if args.d:
         text = decode(text, args.K)
+    
     
     # Print or save the output
     if args.print_only:

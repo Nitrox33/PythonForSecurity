@@ -33,12 +33,10 @@ def plot_frequency(freq:dict):
     addlabels(list(freq.keys()), list(freq.values()), size=7)
     plt.show()
 
-    
 def find_e(text:str) -> dict:
     freq = frequency_analysis(text)
     sorted_freq = sorted(freq.items(), key=lambda x: x[1], reverse=True)
     return sorted_freq[0][0]
-
 
 if __name__ == "__main__":
     # Create the parser
@@ -55,7 +53,7 @@ if __name__ == "__main__":
         exit(1)
         
     # Check if the input is a file or just a string
-    if str(args.i).split(".")[-1] == "txt":
+    if str(args.i).split(".")[-1] in ["txt", "csv", "json", "xml"]:
         print("file input detected...")
         if not os.path.exists(args.i):
             print("The file does not exist")
